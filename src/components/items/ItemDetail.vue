@@ -104,7 +104,7 @@
 
 <script>
 import axios from 'axios'
-import RandomPicture from '@/shared/RandomPicture'
+import RandomPicture from '@/components/RandomPicture'
 export default {
   name: 'ItemDetail',
   components: { RandomPicture },

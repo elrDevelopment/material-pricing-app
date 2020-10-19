@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import RandomPicture from '@/shared/RandomPicture'
+import RandomPicture from '@/components/RandomPicture'
 import ItemDetail from '@/components/items/ItemDetail'
 import axios from 'axios'
 import DeleteConfirm from '@/components/DeleteConfirm'
