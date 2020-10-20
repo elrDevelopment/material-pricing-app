@@ -10,32 +10,32 @@
         <p class="mt-1 text-gray-500 text-sm leading-5 truncate">{{ itemData.itemDescription }}</p>
         <p class="mt-1 text-gray-500 text-sm leading-5 truncate">{{ formatPrice(itemData.cost) }}</p>
       </div>
-      <div class="w-32 h-16 bg-gray-300 rounded-md flex-shrink-0 overflow-hidden">
-        <RandomPicture size="small"></RandomPicture>
+      <div class="w-24 h-24 bg-gray-300 rounded-md flex-shrink-0 overflow-hidden">
+        <RandomPicture :src-url="itemData.imageSrcUrl"></RandomPicture>
       </div>
     </div>
     <div class="border-t border-gray-200">
       <div class="-mt-px flex">
         <div class="w-0 flex-1 flex border-r border-gray-200">
           <a v-on:click="openEditModal" class="relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm leading-5
-          text-mk-gray font-medium border border-transparent rounded-bl-lg hover:text-gray-500 focus:outline-none
+          text-mk-gray font-medium border border-transparent rounded-bl-lg hover:bg-mk-green hover:text-white focus:outline-none
           focus:shadow-outline-blue focus:border-blue-300 focus:z-10 transition ease-in-out duration-150">
-            <font-awesome-icon class="text-mk-blue" :icon="['fas', 'edit']"></font-awesome-icon>
+            <font-awesome-icon class="text-mk-blue hover:text-white" :icon="['fas', 'edit']"></font-awesome-icon>
             <span class="ml-3">Edit</span>
           </a>
         </div>
         <div class="-ml-px w-0 flex-1 flex">
           <a v-on:click="openConfirm" class="relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm leading-5
-          text-mk-gray font-medium border border-transparent rounded-br-lg hover:text-gray-500 focus:outline-none
+          text-mk-gray font-medium border border-transparent rounded-br-lg hover:bg-mk-green hover:text-white focus:outline-none
           focus:shadow-outline-blue focus:border-blue-300 focus:z-10 transition ease-in-out duration-150">
-            <font-awesome-icon class="text-red-500" :icon="['fas', 'trash-alt']"></font-awesome-icon>
+            <font-awesome-icon class="text-red-500 hover:text-white" :icon="['fas', 'trash-alt']"></font-awesome-icon>
             <span class="ml-3">Delete</span>
           </a>
         </div>
       </div>
     </div>
-    <ItemDetail :show="showDetail"  :update-item-data="itemData"></ItemDetail>
-    <DeleteConfirm :showDelete="showDelete"  v-on:confirmDelete="deleteItem"></DeleteConfirm>
+    <ItemDetail :show="showDetail"  :update-item-data="itemData" v-on:toggle="showDetail = false"></ItemDetail>
+    <DeleteConfirm :showDelete="showDelete"  v-on:confirmDelete="deleteItem" v-on:toggle="showDelete = false"></DeleteConfirm>
   </li>
 </template>
 
@@ -62,10 +62,11 @@ export default {
     deleteItem: function () {
       axios({
         method: 'delete',
-        url: `https://mat-pricing-api.azurewebsites.net/api/item/${this.itemData.id}`
+        url: `https://mat-pricing.azurewebsites.net/api/item/${this.itemData.id}`
       }).then(response => {
         if (response.data) {
           this.$emit('itemDeleted')
+          this.showDetail = false
         } else {
           alert('There was an error with the delete')
         }

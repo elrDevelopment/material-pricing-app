@@ -5,7 +5,7 @@ const tailwindui = require('@tailwindcss/ui')
 module.exports = {
   plugins: [
     tailwindcss,
-    autoprefixer,
-    tailwindui
+    tailwindui,
+    autoprefixer
   ]
 }

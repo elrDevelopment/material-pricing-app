@@ -10,22 +10,26 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: LandingPage
+    component: LandingPage,
+    meta: { title: 'Item Tracker' }
   },
   {
     path: '/items',
     name: 'Items',
-    component: Items
+    component: Items,
+    meta: { title: 'Item Tracker List' }
   },
   {
     path: '/contact',
     name: 'Contact',
-    component: Contact
+    component: Contact,
+    meta: { title: 'Item Tracker Contact' }
   },
   {
     path: '/about',
     name: 'About',
-    component: About
+    component: About,
+    meta: { title: 'Item Tracker About' }
   }
 ]
 
@@ -34,5 +38,8 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
-
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title
+  next()
+})
 export default router

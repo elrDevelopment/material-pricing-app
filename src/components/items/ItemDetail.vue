@@ -19,7 +19,6 @@
         <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
       </div>
 
-      <!-- This element is to trick the browser into centering the modal contents. -->
       <span class="hidden sm:inline-block sm:align-middle sm:h-screen"></span>&#8203;
       <!--
         Modal panel, show/hide based on modal state.
@@ -43,7 +42,7 @@
                     <div class="grid grid-cols-6 gap-6">
                       <div class="col-span-6">
                         <div class="w-1/3 mx-auto rounded-lg overflow-hidden">
-                          <RandomPicture size="big"></RandomPicture>
+                          <RandomPicture :srcUrl="imageUrl"></RandomPicture>
                         </div>
 
                       </div>
@@ -69,6 +68,7 @@
                           <option value="Electronics">Electronics</option>
                           <option value="Outdoors">Outdoors</option>
                           <option value="Hardware">Hardware</option>
+                          <option value="Hardware">item</option>
                         </select>
                       </div>
 
@@ -78,14 +78,26 @@
                           <span class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-100 text-gray-500 sm:text-sm sm:leading-5">
                             <font-awesome-icon :icon="['fas', 'dollar-sign']"></font-awesome-icon>
                           </span>
-                          <input id="item_cost" v-model="itemData.cost" type="number" step="1.25"   class="form-input flex-1 block w-full px-3 py-2 border  border-gray-300 rounded-none rounded-r-md sm:text-sm sm:leading-5">
+                          <input id="item_cost" v-model="itemData.cost" type="number" step="1.25"   class="form-input flex-1 block w-full px-3 py-2 border  border-gray-300 rounded-none rounded-r-md sm:text-sm sm:leading-5
+                                    focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                         </div>
+                      </div>
 
+                      <div class="col-span-6 sm:col-span-3">
+                        <label for="item_src" class="block text-sm font-medium leading-5 text-gray-700">Item Image Url</label>
+                        <input id="item_src" v-model="itemData.imageSrcUrl" class="mt-1 form-input block w-full py-2 px-3 border border-gray-300
+                        rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                      </div>
+                      <div class="col-span-6 sm:col-span-3">
+                        <button v-on:click="loadImage" class="py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md mt-6
+                                  text-white bg-mk-blue shadow-sm hover:bg-gray-100 focus:outline-none focus:shadow-outline-blue active:bg-mk-blue transition duration-150 ease-in-out">
+                          Test Image
+                        </button>
                       </div>
                     </div>
                   </div>
                   <div class="px-4 py-3 bg-gray-50 text-right sm:px-6 flex flex-row justify-end">
-                    <button v-on:click="show = false" class="py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md mr-5
+                    <button v-on:click="close" class="py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md mr-5
                     text-white bg-mk-gray shadow-sm hover:bg-gray-100 focus:outline-none focus:shadow-outline-blue active:bg-mk-green transition duration-150 ease-in-out">
                       Close
                     </button>
@@ -119,29 +131,53 @@ export default {
         itemName: '',
         itemDescription: '',
         cost: 0.00,
-        itemCategory: ''
-      }
+        itemCategory: '',
+        imageSrcUrl: ''
+      },
+      imageUrl: 'https://via.placeholder.com/450',
+      editing: false
     }
   },
   created () {
     if (this.updateItemData) {
-      console.log('created item data', this.updateItemData)
       this.itemData = this.updateItemData
+      this.editing = true
+      this.imageUrl = this.itemData.imageSrcUrl
     }
   },
   methods: {
+    loadImage: function () {
+      console.log(this.itemData.imageSrcUrl)
+      this.imageUrl = this.itemData.imageSrcUrl
+    },
+    resetData: function () {
+      this.itemData = {
+        id: 0,
+        itemName: '',
+        itemDescription: '',
+        cost: 0.00,
+        itemCategory: '',
+        imageSrcUrl: ''
+      }
+    },
+    close: function () {
+      if (!this.editing) this.resetData()
+      this.$emit('toggle')
+    },
     submit: function () {
       this.itemData.cost = parseFloat(this.itemData.cost)
+
       axios({
-        method: 'post',
-        url: 'https://mat-pricing-api.azurewebsites.net/api/item',
+        method: this.editing ? 'put' : 'post',
+        url: 'https://mat-pricing.azurewebsites.net/api/item',
         data: JSON.stringify(this.itemData),
         headers: {
           'Content-Type': 'application/json'
         }
       }).then(response => {
         if (response.statusText === 'OK') {
-          this.show = false
+          this.$emit('itemEvent')
+          this.close()
         } else {
           alert('There is an error in the form, please review and re-submit')
         }

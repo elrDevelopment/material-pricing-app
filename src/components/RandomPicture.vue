@@ -1,5 +1,5 @@
 <template>
-      <img  :src="img" alt="Random image from unsplash" />
+      <img  :src="!srcUrl ? 'https://via.placeholder.com/450' : srcUrl" alt="Random image from unsplash" />
 </template>
 
 <script>
@@ -10,7 +10,7 @@ const APP_ACCESS_KEY = '563492ad6f917000010000018f2734a8ae3b4a918b9cbb2cc4185fb7
 export default {
   name: 'RandomPicture',
   props: {
-    size: String
+    srcUrl: String
   },
   data: function () {
     return {
@@ -25,18 +25,12 @@ export default {
         headers: { Authorization: APP_ACCESS_KEY }
       }).then(response => {
         var photosSrc = response.data.photos[0].src
-        if (this.size === 'big') {
-          this.img = photosSrc.large
-        } else if (this.size === 'small') {
-          this.img = photosSrc.landscape
-        } else {
-          this.img = photosSrc.tiny
-        }
+        return photosSrc.large
       })
     }
   },
   mounted () {
-    this.getRandomFromPexels()
+    this.img = this.srcUrl ? this.srcUrl : 'https://via.placeholder.com/450'
   }
 }
 </script>
