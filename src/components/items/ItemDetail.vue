@@ -125,7 +125,7 @@ export default {
   },
   created () {
     if (this.updateItemData) {
-      console.log(this.updateItemData)
+      console.log('created item data', this.updateItemData)
       this.itemData = this.updateItemData
     }
   },
