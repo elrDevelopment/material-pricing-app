@@ -57,10 +57,10 @@ export default {
   },
   methods: {
     deleteItem: function () {
-      close()
+      this.closeConfirm()
       this.$emit('confirmDelete')
     },
-    close: function () {
+    closeConfirm: function () {
       this.$emit('toggle')
     }
   }

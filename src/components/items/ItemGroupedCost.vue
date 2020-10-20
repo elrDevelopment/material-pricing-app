@@ -48,7 +48,7 @@
 
         <div class="mt-5 sm:mt-6 flex flex-row justify-end">
           <span class="rounded-md shadow-sm w-1/4">
-            <button v-on:click="close" type="button" class="inline-flex justify-center w-full rounded-md border border-transparent px-4
+            <button v-on:click="closeConfirm" type="button" class="inline-flex justify-center w-full rounded-md border border-transparent px-4
             py-2 bg-mk-blue text-base leading-6 font-medium text-white shadow-sm hover:bg-mk-green
             focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo transition ease-in-out duration-150
             sm:text-sm sm:leading-5">
@@ -70,7 +70,7 @@ export default {
     showGroupedItems: Boolean
   },
   methods: {
-    close () {
+    closeConfirm () {
       this.$emit('toggle')
     },
     formatPrice: function (value) {

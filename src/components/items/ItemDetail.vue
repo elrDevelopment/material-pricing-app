@@ -160,7 +160,7 @@ export default {
         imageSrcUrl: ''
       }
     },
-    close: function () {
+    closeConfirm: function () {
       if (!this.editing) this.resetData()
       this.$emit('toggle')
     },
@@ -177,7 +177,7 @@ export default {
       }).then(response => {
         if (response.statusText === 'OK') {
           this.$emit('itemEvent')
-          this.close()
+          this.closeConfirm()
         } else {
           alert('There is an error in the form, please review and re-submit')
         }
