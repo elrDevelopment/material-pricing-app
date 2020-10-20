@@ -97,7 +97,7 @@
                     </div>
                   </div>
                   <div class="px-4 py-3 bg-gray-50 text-right sm:px-6 flex flex-row justify-end">
-                    <button v-on:click="close" class="py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md mr-5
+                    <button v-on:click="closeConfirm" class="py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md mr-5
                     text-white bg-mk-gray shadow-sm hover:bg-gray-100 focus:outline-none focus:shadow-outline-blue active:bg-mk-green transition duration-150 ease-in-out">
                       Close
                     </button>
