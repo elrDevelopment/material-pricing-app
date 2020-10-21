@@ -56,7 +56,7 @@ export default {
       return '$' + val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
     },
     openEditModal: function () {
-      console.log('from open modal', this.itemData)
+
       this.showDetail = true
     },
     deleteItem: function () {

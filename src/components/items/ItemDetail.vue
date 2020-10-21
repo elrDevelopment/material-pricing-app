@@ -147,7 +147,6 @@ export default {
   },
   methods: {
     loadImage: function () {
-      console.log(this.itemData.imageSrcUrl)
       this.imageUrl = this.itemData.imageSrcUrl
     },
     resetData: function () {
