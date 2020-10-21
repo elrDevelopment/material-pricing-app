@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-6xl mx-auto">
+  <div class=" mx-5 ">
     <ItemList></ItemList>
   </div>
 </template>

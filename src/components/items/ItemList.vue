@@ -1,12 +1,12 @@
 <template>
-  <div class="w-5xl">
+  <div class="w-full">
     <div class="text-3xl text-gray-700 col-span-12 flex justify-center">
       Full Item Inventory
     </div>
     <ItemHeader v-on:itemEvent="refreshData" class="my-5"></ItemHeader>
-    <div class="grid grid-cols-12 mx-24">
+    <div class="grid grid-cols-12 mx-5 ">
       <template v-for="item in itemData">
-        <ItemCard v-on:itemDeleted="refreshData" v-on:itemEvent="refreshData"  class="col-span-6 m-5" :item-input="item" :key="item.id"></ItemCard>
+        <ItemCard v-on:itemDeleted="refreshData" v-on:itemEvent="refreshData"  class="col-span-12 md:col-span-6 lg:col-span-4 xl:col-span-3 m-5" :item-input="item" :key="item.id"></ItemCard>
       </template>
     </div>
   </div>

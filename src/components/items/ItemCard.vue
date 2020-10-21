@@ -1,5 +1,5 @@
 <template>
-  <li class="col-span-1 bg-white rounded-lg shadow-md list-none">
+  <div class=" bg-white rounded-lg shadow-md list-none">
     <div class="w-full flex items-center justify-between p-6 space-x-6">
       <div class="flex-1 truncate">
         <div class="flex items-center space-x-3">
@@ -36,7 +36,7 @@
     </div>
     <ItemDetail :show="showDetail"  :update-item-data="itemData" v-on:toggle="showDetail = false"></ItemDetail>
     <DeleteConfirm :showDelete="showDelete"  v-on:confirmDelete="deleteItem" v-on:toggle="showDelete = false"></DeleteConfirm>
-  </li>
+  </div>
 </template>
 
 <script>
