@@ -1,5 +1,5 @@
 <template>
-  <div class="relative ">
+  <div class="relative z-20">
     <div class="hidden sm:block sm:absolute sm:inset-y-0 sm:h-full sm:w-full">
 
     </div>
@@ -58,19 +58,19 @@
               </div>
             </div>
             <div class="px-2 pt-2 pb-3">
-              <router-link to="/" v-on:click="hideMobileMenu" href="#" class="block px-3 py-2 rounded-md text-base font-medium text-mk-gray hover:text-mk-green
+              <router-link to="/" v-on:click.native="hideMobileMenu" class="block px-3 py-2 rounded-md text-base font-medium text-mk-gray hover:text-mk-green
               hover:bg-gray-50 focus:outline-none focus:text-mk-green focus:bg-gray-50 transition duration-150
               ease-in-out" role="menuitem">Home</router-link>
 
-              <router-link to="/Items" v-on:click="hideMobileMenu" href="#" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-mk-gray
+              <router-link to="/Items" v-on:click.native="hideMobileMenu" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-mk-gray
               hover:text-mk-green hover:bg-gray-50 focus:outline-none focus:text-mk-green focus:bg-gray-50 transition
               duration-150 ease-in-out" role="menuitem">Items</router-link>
 
-              <router-link to="/About" v-on:click="hideMobileMenu" href="#" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-mk-gray
+              <router-link to="/About" v-on:click.native="hideMobileMenu"  class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-mk-gray
               hover:text-mk-green hover:bg-gray-50 focus:outline-none focus:text-mk-green focus:bg-gray-50 transition
               duration-150 ease-in-out" role="menuitem">About</router-link>
 
-              <router-link to="Contact" v-on:click="hideMobileMenu" href="#" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-mk-gray
+              <router-link to="Contact" v-on:click.native="hideMobileMenu"  class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-mk-gray
               hover:text-mk-green hover:bg-gray-50 focus:outline-none focus:text-mk-green focus:bg-gray-50 transition
               duration-150 ease-in-out" role="menuitem">Contact</router-link>
             </div>
