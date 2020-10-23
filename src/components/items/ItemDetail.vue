@@ -78,19 +78,19 @@
                           <span class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-100 text-gray-500 sm:text-sm sm:leading-5">
                             <font-awesome-icon :icon="['fas', 'dollar-sign']"></font-awesome-icon>
                           </span>
-                          <input id="item_cost" v-model="itemData.cost" type="number" step="1.25"   class="form-input flex-1 block w-full px-3 py-2 border  border-gray-300 rounded-none rounded-r-md sm:text-sm sm:leading-5
+                          <input id="item_cost" v-model="itemData.cost" type="number" step=".001"   class="form-input flex-1 block w-full px-3 py-2 border  border-gray-300 rounded-none rounded-r-md sm:text-sm sm:leading-5
                                     focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                         </div>
                       </div>
 
                       <div class="col-span-6 sm:col-span-3">
-                        <label for="item_src" class="block text-sm font-medium leading-5 text-gray-700">Item Image Url</label>
+                        <label for="item_src" class="block text-sm font-medium leading-5 text-gray-700">Item Image Url (must be a link)</label>
                         <input id="item_src" v-model="itemData.imageSrcUrl" class="mt-1 form-input block w-full py-2 px-3 border border-gray-300
                         rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                       </div>
                       <div class="col-span-6 sm:col-span-3">
                         <button v-on:click="loadImage" class="py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md mt-6
-                                  text-white bg-mk-blue shadow-sm hover:bg-gray-100 focus:outline-none focus:shadow-outline-blue active:bg-mk-blue transition duration-150 ease-in-out">
+                                  text-white bg-mk-blue shadow-sm hover:bg-mk-green focus:outline-none focus:shadow-outline-blue active:bg-mk-blue transition duration-150 ease-in-out">
                           Test Image
                         </button>
                       </div>
@@ -98,11 +98,11 @@
                   </div>
                   <div class="px-4 py-3 bg-gray-50 text-right sm:px-6 flex flex-row justify-end">
                     <button v-on:click="closeConfirm" class="py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md mr-5
-                    text-white bg-mk-gray shadow-sm hover:bg-gray-100 focus:outline-none focus:shadow-outline-blue active:bg-mk-green transition duration-150 ease-in-out">
+                    text-white bg-mk-gray shadow-sm hover:bg-mk-green focus:outline-none focus:shadow-outline-blue active:bg-mk-green transition duration-150 ease-in-out">
                       Close
                     </button>
                     <button v-on:click="submit" class="py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md
-                    text-white bg-mk-blue shadow-sm hover:bg-gray-100 focus:outline-none focus:shadow-outline-blue active:bg-mk-green transition duration-150 ease-in-out">
+                    text-white bg-mk-blue shadow-sm hover:bg-mk-green focus:outline-none focus:shadow-outline-blue active:bg-mk-green transition duration-150 ease-in-out">
                       Submit Item
                     </button>
                   </div>
